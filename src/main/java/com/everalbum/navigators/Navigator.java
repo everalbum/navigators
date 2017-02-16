@@ -10,10 +10,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Locale;
 
-import timber.log.Timber;
-
-import static com.everalbum.everalbumapp.coordinators.plus.Navigator.Direction.BACKWARDS;
-import static com.everalbum.everalbumapp.coordinators.plus.Navigator.Direction.FORWARD;
+import static com.everalbum.navigators.Navigator.Direction.BACKWARDS;
+import static com.everalbum.navigators.Navigator.Direction.FORWARD;
 
 
 /**
@@ -172,12 +170,4 @@ public abstract class Navigator extends Coordinator {
         return false;
     }
 
-    private void log(int direction, String message) {
-        if (direction == FORWARD) {
-            Timber.e("[FORWARD] " + message);
-        } else {
-            Timber.e("[BACKWARD] " + message);
-
-        }
-    }
 }
