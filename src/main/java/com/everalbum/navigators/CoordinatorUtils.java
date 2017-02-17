@@ -66,8 +66,11 @@ final class CoordinatorUtils {
                 coordinator.detach(attached);
                 coordinator.setAttached(false);
                 coordinator.setNavigator(null);
-                attached.setTag(R.id.coordinator, null);
-                attached.removeOnAttachStateChangeListener(this);
+                // Happens if rapidly moving backwards and finishing an activity
+                if(attached != null) {
+                    attached.setTag(R.id.coordinator, null);
+                    attached.removeOnAttachStateChangeListener(this);
+                }
                 attached = null;
             }
         }
