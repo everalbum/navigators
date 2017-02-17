@@ -38,8 +38,6 @@ public abstract class Navigator extends Coordinator {
     private       ViewGroup          viewGroup;
     private       NavigationCallback navigationCallback;
 
-    private State state = new State();
-
     public Navigator(PageManager pageManager) {
         this.pageManager = pageManager;
     }
@@ -120,7 +118,8 @@ public abstract class Navigator extends Coordinator {
         if (current != null) {
             Coordinator c = CoordinatorUtils.getCoordinator(current);
             if(c != null) {
-                state = c.setEndingState(state);
+                State state = c.getEndingState(getState());
+                setState(state);
             }
             viewGroup.removeView(current);
         }
@@ -128,9 +127,9 @@ public abstract class Navigator extends Coordinator {
         // Inflate, attach and bind next view and coordinator
         View v = LayoutInflater.from(viewGroup.getContext())
                                .inflate(coordinator.getLayoutRes(), viewGroup, false);
+        coordinator.setState(getState());
         viewGroup.addView(v);
         CoordinatorUtils.bind(v, coordinator, this);
-        coordinator.setStartingState(state);
         if (coordinator instanceof Navigator) {
             ViewGroup content = (ViewGroup) v.findViewById(R.id.navigator_content);
             if (content == null ) {

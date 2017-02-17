@@ -9,6 +9,7 @@ public abstract class Coordinator {
 
     private boolean   attached;
     private Navigator navigator;
+    private State state = new State();
 
     @LayoutRes
     public abstract int getLayoutRes();
@@ -32,16 +33,16 @@ public abstract class Coordinator {
 
     /**
      * The parent {@link Navigator} will give its child coordinators a chance to set themselves up
-     * with a {@link State}. CoordinatorUtils can gleam information from previous coordinators in the
+     * with a {@link State}. Coordinators can gleam information from previous coordinators in the
      * navigation tree this way.
      * </br>
-     * This method is called AFTER a coordinator is attached to its view.
+     * This method is called BEFORE a coordinator is attached to its view.
      * NOTE: {@link State} is immutable, so coordinators need not worry about modifying the state
      * or changing the data.
      * @param state
      */
-    protected void setStartingState(@NonNull State state) {
-
+    void setState(@NonNull State state) {
+        this.state = state;
     }
     /**
      * Called when the view is attached to a Window.
@@ -75,7 +76,7 @@ public abstract class Coordinator {
      * @return an instance of {@link State}. Can be the same one (unmodified), or a new modified version.
      */
     @NonNull
-    protected State setEndingState(@NonNull State state) {
+    protected State getEndingState(@NonNull State state) {
         return state;
     }
 
@@ -93,6 +94,10 @@ public abstract class Coordinator {
     @Nullable
     public final Navigator getNavigator() {
         return navigator;
+    }
+
+    public final State getState() {
+        return state;
     }
 
 }
