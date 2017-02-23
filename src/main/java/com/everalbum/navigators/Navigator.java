@@ -1,5 +1,8 @@
 package com.everalbum.navigators;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.os.Build;
 import android.support.annotation.CallSuper;
 import android.support.annotation.IntDef;
 import android.view.LayoutInflater;
@@ -167,6 +170,15 @@ public abstract class Navigator extends Coordinator {
             return direction == FORWARD ? navigator.nextPage() : navigator.previousPage();
         }
         return false;
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setStatusBarColor(int color) {
+        if(viewGroup != null) {
+            if(viewGroup.getContext() instanceof Activity) {
+                ((Activity) viewGroup.getContext()).getWindow().setStatusBarColor(color);
+            }
+        }
     }
 
 }
