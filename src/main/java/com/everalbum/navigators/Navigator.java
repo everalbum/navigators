@@ -121,6 +121,11 @@ public abstract class Navigator extends Coordinator {
         if (current != null) {
             Coordinator c = CoordinatorUtils.getCoordinator(current);
             if(c != null) {
+                if(direction == FORWARD) {
+                    c.onExitForwards(current);
+                } else {
+                    c.onExitBackwards(current);
+                }
                 State state = c.getEndingState(getState());
                 setState(state);
             }
@@ -133,6 +138,11 @@ public abstract class Navigator extends Coordinator {
         coordinator.setState(getState());
         viewGroup.addView(v);
         CoordinatorUtils.bind(v, coordinator, this);
+        if(direction == FORWARD) {
+            coordinator.onEnter(v);
+        } else {
+            coordinator.onReenter(v);
+        }
         if (coordinator instanceof Navigator) {
             ViewGroup content = (ViewGroup) v.findViewById(R.id.navigator_content);
             if (content == null ) {
