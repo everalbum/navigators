@@ -56,6 +56,59 @@ public abstract class Coordinator {
     }
 
     /**
+     * Callback for when a coordinator is being added via forward navigation (i.e. it is entering)
+     *
+     * Allows Coordinator to animate its views in in a proper fashion
+     *
+     * Called after {@link #attach(View)}
+     *
+     * @param view The view associated with this coordinator
+     */
+    public void onEnter(View view) {
+
+    }
+
+    /**
+     * Callback for when a coordinator is being added via backward navigation (i.e. it is
+     * reentering)
+     *
+     * Allows Coordinator to animate its views in in a proper fashion
+     *
+     * Called after {@link #attach(View)}
+     *
+     * @param view The view associated with this coordinator
+     */
+    public void onReenter(View view) {
+
+    }
+
+    /**
+     * Callback for when a coordinator is being removed via forward navigation.
+     *
+     * Allows Coordinator to animate its views out in a proper fashion
+     *
+     * Called before {@link #detach(View)}
+     *
+     * @param view The view associated with this coordinator
+     */
+    public void onExitForwards(View view) {
+
+    }
+
+    /**
+     * Callback for when a coordinator is being removed via backward navigation.
+     *
+     * Allows Coordinator to animate its views out in a proper fashion
+     *
+     * Called before {@link #detach(View)}
+     *
+     * @param view The view associated with this coordinator
+     */
+    public void onExitBackwards(View view) {
+
+    }
+
+    /**
      * Called when the view is detached from a Window.
      *
      * Default implementation does nothing.
