@@ -191,4 +191,14 @@ public abstract class Navigator extends Coordinator {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public int getStatusBarColor() {
+        if(viewGroup != null) {
+            if(viewGroup.getContext() instanceof Activity) {
+                return ((Activity) viewGroup.getContext()).getWindow().getStatusBarColor();
+            }
+        }
+        throw new RuntimeException("Navigator view group was either or parent context was not an activity");
+    }
+
 }
