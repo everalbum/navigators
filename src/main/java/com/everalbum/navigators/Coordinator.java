@@ -44,6 +44,17 @@ public abstract class Coordinator {
     void setState(@NonNull State state) {
         this.state = state;
     }
+
+    /**
+     * Callback for when the hardware back button is pressed.
+     * When returning true for this method, be sure to eventually call {@link Navigator#previousPage()}
+     *
+     * @return true if this instance will handle the back press, or false if it would like
+     *         the parent to handle it.
+     */
+    public boolean onBackPress() {
+        return false;
+    }
     /**
      * Called when the view is attached to a Window.
      *

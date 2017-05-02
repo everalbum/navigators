@@ -82,6 +82,16 @@ public abstract class Navigator extends Coordinator {
         navigationCallback = null;
     }
 
+    @Override
+    public boolean onBackPress() {
+        Coordinator current = pageManager.currentPage();
+        if(current != null && current.onBackPress()) {
+            // Child is handling back press
+            return true;
+        }
+        return previousPage();
+    }
+
     /**
      * Move to the next page.
      * @return true if handled by a child coordinator or navigator, false if no next page
