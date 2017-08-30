@@ -20,11 +20,11 @@ import static com.everalbum.navigators.Navigator.Direction.FORWARD;
 /**
  * Special type of {@link Coordinator} that can have children {@link Coordinator}s and {@link Navigator}s
  * and navigate forwards and backwards between them.
- * </br>
+ * <p>
  * A {@link Navigator} is essentially a tree, where {@link Coordinator}s are leaf nodes and {@link Navigator}s
  * are regular nodes. Navigation in this tree happens in a depth-first fashion.
- * </br>
- * Child {@link Navigator}s MUST have a view group with the id set to {@link R.id#navigator_content}
+ * <p>
+ * Child {@link Navigator}s MUST have a view group with the id set to {@code R.id.navigator_content}
  */
 public abstract class Navigator extends Coordinator {
     @Retention(RetentionPolicy.CLASS)
@@ -67,7 +67,7 @@ public abstract class Navigator extends Coordinator {
     /**
      * Add a {@link NavigationCallback} to this Navigator. The callback will be invoked whenever
      * the next or previous pages are loaded.
-     * </br>
+     * <p>
      * Used primarily to know when the last or first pages are reached.
      */
     public final void setNavigationCallback(NavigationCallback navigationCallback) {

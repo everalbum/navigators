@@ -35,7 +35,7 @@ public abstract class Coordinator {
      * The parent {@link Navigator} will give its child coordinators a chance to set themselves up
      * with a {@link State}. Coordinators can gleam information from previous coordinators in the
      * navigation tree this way.
-     * </br>
+     * <p>
      * This method is called BEFORE a coordinator is attached to its view.
      * NOTE: {@link State} is immutable, so coordinators need not worry about modifying the state
      * or changing the data.
@@ -134,7 +134,7 @@ public abstract class Coordinator {
      * A parent {@link Navigator} will allow a coordinator to modify its state when it is being detached.
      * This allows a coordinator a chance to pass information along to the parent navigator or to the
      * next coordinator in the navigation tree.
-     * </br>
+     * <p>
      * This method is called BEFORE a coordinator is detached.
      * @param state
      * @return an instance of {@link State}. Can be the same one (unmodified), or a new modified version.
