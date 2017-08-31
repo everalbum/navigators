@@ -174,6 +174,8 @@ Because the navigation depends strictly on views and does not require any Contex
 to separate the view from the presenter in MVP. For example, the coordinator can handle all view related things, including animation, updating
 text views, etc.., while the presenter handles all logic. This makes it very easy to unit test.
 
+Using the `CachingPageManager` allows state to be maintained across configuration changes.
+
 ### Cons
 
 Since a page manager requires the pages to be known ahead of time, the framework only really works for linear flows of UI. Something
